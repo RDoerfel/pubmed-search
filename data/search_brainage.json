@@ -1,0 +1,14 @@
+{
+    "Terms":"(brain age) AND (age prediction) AND (MRI) AND (MACHINE LEARNING)",
+    "Settings":
+        {
+        "db":"pubmed", 
+        "sort":"relevance", 
+        "field":"abstract",
+        "startdate":"2010/01/01",
+        "stopdate":"2022/05/20",
+        "retmax":1000,
+        "retmode":"xml"},
+    "Exclude":"C:/Git/pubmed-search/data/Publication_types_to_exlcude.xlsx",
+    "Result":"C:/Git/pubmed-search/results"
+}
