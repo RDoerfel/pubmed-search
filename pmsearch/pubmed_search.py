@@ -1,6 +1,7 @@
 #%%
-from pmsearch import io
-from pmsearch import search
+from . import version
+from . import io
+from . import search
 
 import argparse
 
@@ -52,7 +53,8 @@ def pubmed_search(terms,settings,result_dir,exclude_file=None,include=None):
 
 def run():
     """Run command."""
-    parser = argparse.ArgumentParser(description='Execute Pubmed Search.')
+    version()
+    parser = argparse.ArgumentParser(description='Execute PubMed search.')
 
     parser.add_argument("-f", required=True, help="Path to json file containing search terms and settings")
 
@@ -61,3 +63,6 @@ def run():
 
     search_params = io.read_json(file)
     pubmed_search(**search_params)
+
+if __name__ == '__main__':
+    run()
