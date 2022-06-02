@@ -54,29 +54,17 @@ def extract_info(papers):
     dfPapers = pd.DataFrame(entries,columns=names)
     return dfPapers
 
-def exclude_by_type(dfPapers,exclude_file):
-    dfExclusion = pd.read_excel(exclude_file)
-    to_exclude = dfExclusion['ExludedPubType'].to_list()
+def exclude_by_type(dfPapers,exclude):
     n_papers = len(dfPapers)
     lKeep = np.zeros([n_papers,1],dtype=bool)
     for i,set_type in enumerate(dfPapers['Type']):
-        if(set(set_type) & set(to_exclude) == set()): 
+        if(set(set_type) & set(exclude) == set()): 
             lKeep[i] = True
 
     print('Excluding {} papers.'.format(n_papers-lKeep.sum()))
     return dfPapers[lKeep]
 
-def pubmed_search(term,search_params,exclude_file,result_dir):
-    results = search(term,**search_params)
-    id_list = results['IdList']
-    papers = fetch_details(id_list)
-    papers = list(papers)
-    print('Found {} papers.'.format(len(papers)))
+def check_for_papers(df,include):
+    same = set(df['PMID']) & set(include)
+    print("{} out of {} where found in search.".format(len(same),len(include)))
 
-    dfPapers = extract_info(papers)
-    dfPapersCleaned = exclude_by_type(dfPapers,exclude_file)
-    store_search(dfPapersCleaned,result_dir)
-
-# %%
-
-# %%
