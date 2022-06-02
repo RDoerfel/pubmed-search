@@ -6,6 +6,23 @@ import argparse
 
 # %%
 def pubmed_search(terms,settings,result_dir,exclude_file=None,include=None):
+    """Run pubmed search for specified settings
+
+    Parameters
+    ----------
+    terms : str
+        Terms for pubmed search. Could be "(Pubmed) AND (Search)".
+    settings : dict
+        Settings for pubmed search.
+    result_dir : str
+        Directory to store results in
+    exclude_file : str, optional
+        Filename with journal types to exclude, by default None
+    include : str, optional
+        String with comma separeted PMIDs to look for in results, by default None
+    """
+    print("=================================Settings=================================")
+
     print("Terms: {}".format(terms))    
     print("Settings: {}".format(settings))
     
@@ -24,10 +41,8 @@ def pubmed_search(terms,settings,result_dir,exclude_file=None,include=None):
         print("Check for: {}".format("None"))
 
     print("=================================Run=================================")
-    results = search.search(terms,**settings)
-    id_list = results['IdList']
+    id_list = search.search(terms,**settings)
     papers = search.fetch_details(id_list)
-    papers = list(papers)
     print('Found {} papers.'.format(len(papers)))
 
     dfPapers = search.extract_info(papers)
@@ -36,6 +51,7 @@ def pubmed_search(terms,settings,result_dir,exclude_file=None,include=None):
     search.store_search(dfPapersCleaned,result_dir)
 
 def run():
+    """Run command."""
     parser = argparse.ArgumentParser(description='Execute Pubmed Search.')
 
     parser.add_argument("-f", required=True, help="Path to json file containing search terms and settings")
