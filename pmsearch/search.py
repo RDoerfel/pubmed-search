@@ -67,4 +67,6 @@ def exclude_by_type(dfPapers,exclude):
 def check_for_papers(df,include):
     same = set(df['PMID']) & set(include)
     print("{} out of {} where found in search.".format(len(same),len(include)))
+    print(same)
 
+# %%

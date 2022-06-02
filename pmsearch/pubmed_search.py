@@ -1,6 +1,6 @@
 #%%
-from src import io
-from src import search
+from pmsearch import io
+from pmsearch import search
 
 import argparse
 
@@ -17,12 +17,13 @@ def pubmed_search(terms,settings,result_dir,exclude_file=None,include=None):
         print("Excluding: {}".format("None") )
 
     if(include):
-        print("Check for: {}".format(include))
         include = include.split(',')
+        print("Check for: {}".format(include))
     else:
         include = []
         print("Check for: {}".format("None"))
 
+    print("=================================Run=================================")
     results = search.search(terms,**settings)
     id_list = results['IdList']
     papers = search.fetch_details(id_list)
@@ -41,10 +42,6 @@ def run():
 
     args = parser.parse_args() 
     file = args.f
-    print(file)
+
     search_params = io.read_json(file)
     pubmed_search(**search_params)
-    
-# %%
-if __name__ == "__main__":
-    run()
