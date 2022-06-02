@@ -1,6 +1,6 @@
 # pubmed-search
 
-Command line application to search Pubmed.
+Command line application to search Pubmed. This tool utilizes the API provided by [https://biopython.org/docs/latest/api/Bio.Entrez.html]() to communicate with PubMed.
 
 ### Getting started
 
@@ -51,7 +51,7 @@ The search parameters are defined using a json file, like it is provided in `dat
     "retmode":"xml"}
 ```
 
-Settings as specified in https://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.ESearch.
+Settings as specified in [https://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.ESearch]().
 
 `"exclude_file":"<path_to_exclude_file>"` - The path to the file containing Journal Types to exclude from search
 
