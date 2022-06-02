@@ -1,5 +1,5 @@
 {
-    "Terms":"(brain age) AND (age prediction) AND (MRI) AND (MACHINE LEARNING)",
+    "Terms":"( (brain age) AND  (prediction)  AND ( (MRI) OR (magnetic resonance) ) AND ( (T1) OR (structural) OR (anatomical) ) AND ( (machine learning) OR (deep learning) OR (statistical learning) ) ) NOT(children) )",
     "Settings":
         {
         "db":"pubmed", 

@@ -7,12 +7,15 @@ import os
 
 # %%
 def search(query,**kwargs):
+    print("Searching papers.")
     Entrez.email = 'your.email@example.com'
     handle = Entrez.esearch(**kwargs,term=query)
     results = Entrez.read(handle)
     return results
 
 def fetch_details(id_list):
+    print("Fetching details.")
+
     ids = ','.join(id_list)
     Entrez.email = 'your.email@example.com'
     handle = Entrez.efetch(db="pubmed", 
@@ -23,6 +26,7 @@ def fetch_details(id_list):
     return results
 
 def store_search(df,result_dir):
+    print('Storing results.')
     timestemp = datetime.now().strftime("%m%d%Y_%H%M%S")
     result_name = 'pumbed_{}.xlsx'.format(timestemp)
     resultpath = os.path.join(result_dir,result_name)
@@ -59,7 +63,7 @@ def exclude_by_type(dfPapers,exclude_file):
         if(set(set_type) & set(to_exclude) == set()): 
             lKeep[i] = True
 
-    print('Drop {} of {} papers.'.format(n_papers-lKeep.sum(),n_papers))
+    print('Excluding {} papers.'.format(n_papers-lKeep.sum()))
     return dfPapers[lKeep]
 
 def pubmed_search(term,search_params,exclude_file,result_dir):
@@ -67,6 +71,8 @@ def pubmed_search(term,search_params,exclude_file,result_dir):
     id_list = results['IdList']
     papers = fetch_details(id_list)
     papers = list(papers)
+    print('Found {} papers.'.format(len(papers)))
+
     dfPapers = extract_info(papers)
     dfPapersCleaned = exclude_by_type(dfPapers,exclude_file)
     store_search(dfPapersCleaned,result_dir)
