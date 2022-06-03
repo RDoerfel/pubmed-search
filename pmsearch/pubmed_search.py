@@ -49,7 +49,7 @@ def pubmed_search(terms,settings,result_dir,exclude_file=None,include=None):
     dfPapers = search.extract_info(papers)
     dfPapersCleaned = search.exclude_by_type(dfPapers,exclude)
     search.check_for_papers(dfPapersCleaned,include)
-    search.store_search(dfPapersCleaned,result_dir)
+    io.store_search(dfPapersCleaned,result_dir)
 
 def run():
     """Run command."""

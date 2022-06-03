@@ -2,8 +2,6 @@
 from Bio import Entrez, Medline
 import pandas as pd
 import numpy as np
-from datetime import datetime
-import os
 
 # %%
 def search(query,**kwargs):
@@ -48,22 +46,6 @@ def fetch_details(id_list):
                            retmode="text")
     results = Medline.parse(handle)
     return list(results)
-
-def store_search(df,result_dir):
-    """Store dataframe with time stemp
-
-    Parameters
-    ----------
-    df : DataFrame
-        Results to store. 
-    result_dir : str
-        diretory to store results
-    """
-    print('Storing results.')
-    timestemp = datetime.now().strftime("%m%d%Y_%H%M%S")
-    result_name = 'pumbed_{}.xlsx'.format(timestemp)
-    resultpath = os.path.join(result_dir,result_name)
-    df.to_excel(resultpath,index=False)
 
 def extract_info(papers):
     """Extract information from list of papers and store in dataframe. 
