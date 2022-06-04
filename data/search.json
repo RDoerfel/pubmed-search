@@ -1,0 +1,15 @@
+{
+    "terms":"( (PubMed) OR (Medline) ) AND (search)",
+    "settings":
+        {
+        "db":"pubmed", 
+        "field":"title/abstract",
+        "sort":"relevance", 
+        "mindate":"2018/01/01",
+        "maxdate":"2022/05/20",
+        "retmax":10000,
+        "retmode":"xml"},
+    "exclude_file":"<path_to_project_dir>/data/Publication_types_to_exlcude.xlsx",
+    "include":"PMID1,PMID2,PMID3",
+    "result_dir":"<result_dir>"
+}
