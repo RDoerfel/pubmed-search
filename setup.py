@@ -2,7 +2,9 @@ from setuptools import find_packages, setup
 
 setup(
     name="pmsearch",
+    maintainer='Ruben Doerfel',
     packages=find_packages(),
+    version='0.1.1',
     entry_points={
         'console_scripts': [
                 'pmsearch=pmsearch.pubmed_search:run',

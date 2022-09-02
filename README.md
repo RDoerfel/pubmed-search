@@ -22,7 +22,7 @@ cd pubmed-search
 pip install .
 ```
 
-I recommend using the package in its own onda environment to make sure that everything works.
+I recommend using the package in its own conda environment to make sure that everything works.
 
 ### Usage
 
@@ -59,6 +59,6 @@ Settings as specified in [https://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.
 
 ### Execute search
 
-Run pubmed search using: 
+Run pubmed search using:
 
 `pmsearch -f <path_to_search.json>`
