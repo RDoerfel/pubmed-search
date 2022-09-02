@@ -33,7 +33,7 @@ def df_to_html(data):
         for i,row in data.iterrows():
             title = row['Titles']
             abstract = row['Abstracts']
-            authors = eval(row['Authors'])
+            authors = row['Authors']
             pmid = row['PMID']
             date = row['Date']
             journal = row['Journal']
@@ -66,10 +66,4 @@ def df_to_html(data):
     result = doc.getvalue()
     return result
 
-#%%
-df = pd.read_excel('pubmed_09012022_143820.xlsx')
-html = df_to_html(df)
-with open('../data/file.html', 'wb') as f:
-    f.write(bytes(html, encoding='utf8'))
-shutil.copytree('html/','../data/html/')
 # %%

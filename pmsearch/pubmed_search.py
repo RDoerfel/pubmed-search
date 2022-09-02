@@ -28,7 +28,6 @@ def pubmed_search(terms,settings,result_dir,exclude_file=None,include=None,html=
 
     print("Terms: {}".format(terms))    
     print("Settings: {}".format(settings))
-    print(html)
     if(exclude_file):
         exclude = io.read_excel_column(exclude_file,'ExludedPubType')
         print("Excluding: {}".format(exclude) )
@@ -64,7 +63,6 @@ def run():
     parser = argparse.ArgumentParser(description='Execute PubMed search.')
 
     parser.add_argument("-f", required=True, help="Path to json file containing search terms and settings")
-    parser.add_argument("--html", required=False, default=False, help="Apply html formatting to results")
 
     args = parser.parse_args() 
     file = args.f
