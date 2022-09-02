@@ -69,6 +69,3 @@ def store_html(html,result_dir):
     print('Storing results.')
     with open(os.path.join(result_dir,'index.html'), 'wb') as f:
         f.write(bytes(html, encoding='utf8'))
-        html_path = os.path.join('html/')
-        dest = os.path.join(result_dir,'html')
-        shutil.copytree(html_path, dest)

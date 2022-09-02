@@ -6,7 +6,7 @@ from . import search
 import argparse
 import shutil
 # %%
-def pubmed_search(terms,settings,result_dir,exclude_file=None,include=None,html=False):
+def pubmed_search(terms,settings,result_dir,exclude_file=None,include=None,html=None):
     """Run pubmed search for specified settings
 
     Parameters
@@ -28,7 +28,7 @@ def pubmed_search(terms,settings,result_dir,exclude_file=None,include=None,html=
 
     print("Terms: {}".format(terms))    
     print("Settings: {}".format(settings))
-    
+    print(html)
     if(exclude_file):
         exclude = io.read_excel_column(exclude_file,'ExludedPubType')
         print("Excluding: {}".format(exclude) )
