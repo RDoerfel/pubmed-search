@@ -14,6 +14,7 @@ setup(
         'biopython==1.78',
         'pandas==1.3.5',
         'numpy==1.21.2',
-        'openpyxl==3.0.9'
+        'openpyxl==3.0.9',
+        'yattag',
     ]
 )
