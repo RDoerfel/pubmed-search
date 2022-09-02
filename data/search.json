@@ -11,5 +11,6 @@
         "retmode":"xml"},
     "exclude_file":"<path_to_project_dir>/data/Publication_types_to_exlcude.xlsx",
     "include":"PMID1,PMID2,PMID3",
-    "result_dir":"<result_dir>"
+    "result_dir":"<result_dir>",
+    "html":true
 }
