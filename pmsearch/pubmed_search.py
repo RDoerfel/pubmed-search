@@ -1,12 +1,12 @@
 #%%
+from pmsearch.to_html import df_to_html
 from . import version
 from . import io
 from . import search
-
 import argparse
-
+import shutil
 # %%
-def pubmed_search(terms,settings,result_dir,exclude_file=None,include=None):
+def pubmed_search(terms,settings,result_dir,exclude_file=None,include=None,html=False):
     """Run pubmed search for specified settings
 
     Parameters
@@ -21,6 +21,8 @@ def pubmed_search(terms,settings,result_dir,exclude_file=None,include=None):
         Filename with journal types to exclude, by default None
     include : str, optional
         String with comma separeted PMIDs to look for in results, by default None
+    html : bool, optional
+        Apply html formatting to results, by default False
     """
     print("=================================Settings=================================")
 
@@ -51,12 +53,18 @@ def pubmed_search(terms,settings,result_dir,exclude_file=None,include=None):
     search.check_for_papers(dfPapersCleaned,include)
     io.store_search(dfPapersCleaned,result_dir)
 
+    if(html):
+        print('Storing results as html.')
+        html_text = df_to_html(dfPapersCleaned)
+        io.store_html(html_text,result_dir)
+
 def run():
     """Run command."""
     version()
     parser = argparse.ArgumentParser(description='Execute PubMed search.')
 
     parser.add_argument("-f", required=True, help="Path to json file containing search terms and settings")
+    parser.add_argument("--html", required=False, default=False, help="Apply html formatting to results")
 
     args = parser.parse_args() 
     file = args.f
